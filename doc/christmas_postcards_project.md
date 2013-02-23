@@ -6,5 +6,6 @@
 * Install postgres which was a lotta pain
 * Created xmascard rails app
 * Deployed xmascard rails app to Heroku, and it worked!
-* **Next up: ** create my first migration and send it to heroku
+* created my first migration and send it to heroku
+* fixed a bunch of crap with the asset pipeline and bootstrap in heroku
 * **Next up: ** do some design
