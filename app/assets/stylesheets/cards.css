@@ -1,0 +1,19 @@
+.cardmessage {
+	width: 800px;
+	height: 400px;
+}
+.cardmessage div {
+	padding:0 10px;
+	height:90%;
+}
+.cardmessage .message {
+	width:379px;
+	height:100%;
+	float:left;
+	border-right:1px solid #ccc;
+}
+
+.cardmessage .address {
+	width:380px;
+	float:left;
+}

@@ -1,17 +1,29 @@
 <%- model_class = Card -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%= @card.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @card.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><%= @card.address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:message) %>:</strong></dt>
-  <dd><%= @card.message %></dd>
-</dl>
-
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href= "#tab1"  data-toggle="tab">Front</a></li>
+	  <li><a href= "#tab2"  data-toggle="tab">Back</a></li>
+	  <li><a href= "#tab3"  data-toggle="tab">Message &amp; info</a></li>
+	</ul>
+	<div class="tab-content">
+	  <div class="tab-pane active" id="tab1">
+	    <%= image_tag @card.frontimg.url(:full) %>
+	  </div>
+	  <div class="tab-pane" id="tab2">
+	    <%= image_tag @card.backimg.url(:full) %>
+	  </div>
+	  <div class="tab-pane" id="tab3">
+	    <div class="cardmessage well">
+	    	<div class="message"><%= raw @card.message %></div>
+	    	<div class="address"><%= raw @card.address %></div>
+	    </div>
+	  </div>
+	</div>
+</div>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               cards_path, :class => 'btn'  %>

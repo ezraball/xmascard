@@ -1,7 +1,20 @@
 # Christmas Postcards project
 
-## Development log
-### 22 Feb 2013
+## Business
+### research
+* what are folks doing on etsy and ebay?
+
+
+## Tech
+
+### Todo
+* push to remote feature
+* re-do amazon bucket structure
+* implement login
+* write tests!
+
+### Development log
+#### 22 Feb 2013
 * Wanted to experiment with hosting @ Heroko. Since it is postgres-based, that led me to…
 * Install postgres which was a lotta pain
 * Created xmascard rails app
@@ -9,3 +22,8 @@
 * created my first migration and send it to heroku
 * fixed a bunch of crap with the asset pipeline and bootstrap in heroku
 * **Next up: ** do some design
+* **Next up: ** add paperclip attachments
+
+#### 23 Feb 2013
+* added paperclip attachments
+* wrote load script from local directory

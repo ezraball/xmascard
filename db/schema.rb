@@ -11,14 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223055900) do
+ActiveRecord::Schema.define(:version => 20130223130803) do
 
   create_table "cards", :force => true do |t|
     t.string   "name"
     t.text     "address"
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "frontimg_file_name"
+    t.string   "frontimg_content_type"
+    t.integer  "frontimg_file_size"
+    t.datetime "frontimg_updated_at"
+    t.string   "backimg_file_name"
+    t.string   "backimg_content_type"
+    t.integer  "backimg_file_size"
+    t.datetime "backimg_updated_at"
   end
 
 end
