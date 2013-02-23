@@ -1,12 +1,3 @@
-development: 
-    access_key_id: AKIAIAUYPXIUMRUG5V7A
-    secret_access_key: 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
-    bucket: xmascard-development
-test:
-    access_key_id: AKIAIAUYPXIUMRUG5V7A
-    secret_access_key: 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
-    bucket: xmascard-test
-production:
-    access_key_id: AKIAIAUYPXIUMRUG5V7A
-    secret_access_key: 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
-    bucket: xmascard-production
+access_key_id: AKIAIAUYPXIUMRUG5V7A
+secret_access_key: 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
+bucket: xmaspostcards

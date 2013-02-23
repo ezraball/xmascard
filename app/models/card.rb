@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  attr_accessible :address, :message, :name, :frontimg, :backimg
+  attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at
   
   has_attached_file :frontimg, 
     :styles => { :full => "600x600>", :medium => "300x300>", :thumb => "100x100>" },

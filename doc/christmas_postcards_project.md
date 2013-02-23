@@ -8,10 +8,11 @@
 ## Tech
 
 ### Todo
-* push to remote feature
 * re-do amazon bucket structure
 * implement login
+* push to remote feature
 * write tests!
+* design
 
 ### Development log
 #### 22 Feb 2013
@@ -27,3 +28,4 @@
 #### 23 Feb 2013
 * added paperclip attachments
 * wrote load script from local directory
+* verified that paperclip worked ok with heroku
