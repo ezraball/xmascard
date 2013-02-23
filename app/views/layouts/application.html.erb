@@ -69,7 +69,16 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <%= bootstrap_flash %>
+          <%# bootstrap_flash commented out; see https://github.com/seyhunak/twitter-bootstrap-rails/issues/479 %>
+		<div class="container">
+		  <% flash.each do |name, msg| %>
+		    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+		      <a class="close" data-dismiss="alert">x</a>
+		      <%= msg  %>
+		    </div>
+		  <% end %>
+		  <!-- Rest of content -->
+		</div>
           <%= yield %>
         </div>
       </div><!--/row-->
