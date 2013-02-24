@@ -8,11 +8,18 @@
 ## Tech
 
 ### Todo
-* re-do amazon bucket structure
+
+* create fingerprint, a unique id based on filename and filesize that is shared between instances
 * implement login
 * push to remote feature
 * write tests!
 * design
+* a way to remove remotecards
+
+### Done
+* ~~re-do amazon bucket structure~~ 
+
+
 
 ### Development log
 #### 22 Feb 2013

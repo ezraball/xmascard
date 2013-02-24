@@ -13,7 +13,11 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
-    @card = Card.find(params[:id])
+    if params[:fingerprint]
+      @card = Card.where(params[:fingerprint]).first
+    else
+      @card = Card.find(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
