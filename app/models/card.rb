@@ -4,11 +4,13 @@ class Card < ActiveRecord::Base
   has_attached_file :frontimg, 
     :styles => { :full => "600x600>", :medium => "300x300>", :thumb => "100x100>" },
     :storage => :s3,
+    :path => "/frontimg/:style/:filename",
     :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml"
   
   has_attached_file :backimg, 
     :styles => { :full => "600x600>", :medium => "300x300>", :thumb => "100x100>" },
     :storage => :s3,
+    :path => "/backimg/:style/:filename",
     :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml"
   
   def self.load_dir_of_images(dirname)
@@ -31,6 +33,14 @@ class Card < ActiveRecord::Base
     end
     c.save
     c
+  end
+  
+  def push_to_remote
+    rc = RemoteCard.new
+    self.attributes.each_pair do |key,value|
+      rc.send("#{key}=",value)
+    end
+    rc.save
   end
   
   private
