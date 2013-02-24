@@ -14,7 +14,7 @@ class CardsController < ApplicationController
   # GET /cards/1.json
   def show
     if params[:fingerprint]
-      @card = Card.where(params[:fingerprint]).first
+      @card = Card.where(:fingerprint => params[:fingerprint]).first
     else
       @card = Card.find(params[:id])
     end
