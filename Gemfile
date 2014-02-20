@@ -39,3 +39,5 @@ gem "nested_form", :git =>  'git://github.com/ryanb/nested_form.git'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'devise'
