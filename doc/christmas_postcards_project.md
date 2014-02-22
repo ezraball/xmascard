@@ -8,10 +8,18 @@
 ## Tech
 
 ### Todo
-* push to remote feature
-* re-do amazon bucket structure
+
+* create fingerprint, a unique id based on filename and filesize that is shared between instances
 * implement login
+* push to remote feature
 * write tests!
+* design
+* a way to remove remotecards
+
+### Done
+* ~~re-do amazon bucket structure~~ 
+
+
 
 ### Development log
 #### 22 Feb 2013
@@ -27,3 +35,4 @@
 #### 23 Feb 2013
 * added paperclip attachments
 * wrote load script from local directory
+* verified that paperclip worked ok with heroku

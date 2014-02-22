@@ -2,7 +2,11 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    if params[:fingerprint]
+      @card = Card.where(:fingerprint => params[:fingerprint])
+    else
+      @cards = Card.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
