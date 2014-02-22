@@ -1,4 +1,7 @@
 class CardsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:new, :update, :create]
+  
+  
   # GET /cards
   # GET /cards.json
   def index
