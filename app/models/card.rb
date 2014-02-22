@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at, :original_filename
+  attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at, :original_filename, :year_list, :tag_list
   attr_reader :DEFAULT_IMAGE_FOLDER
   
   has_attached_file :frontimg, 
@@ -14,6 +14,8 @@ class Card < ActiveRecord::Base
     :path => "/backimg/:style/:filename",
     :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml"
   DEFAULT_IMAGE_FOLDER = "/Users/ezraball/Documents/xmas_postcard_pics"
+  
+  acts_as_taggable_on :years, :tags
   
   validates :frontimg, :attachment_presence => true
   before_create :set_fingerprint

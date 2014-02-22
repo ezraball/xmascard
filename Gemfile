@@ -41,3 +41,4 @@ gem "nested_form", :git =>  'git://github.com/ryanb/nested_form.git'
 # gem 'debugger'
 
 gem 'devise'
+gem 'acts-as-taggable-on'
