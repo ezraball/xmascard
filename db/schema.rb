@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220032134) do
+ActiveRecord::Schema.define(:version => 20140222215718) do
 
   create_table "cards", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20140220032134) do
     t.integer  "backimg_file_size"
     t.datetime "backimg_updated_at"
     t.string   "fingerprint"
+    t.string   "original_filename"
   end
 
   create_table "oauth_access_grants", :force => true do |t|

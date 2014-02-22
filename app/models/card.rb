@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at
+  attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at, :original_filename
   attr_reader :DEFAULT_IMAGE_FOLDER
   
   has_attached_file :frontimg, 
@@ -24,21 +24,22 @@ class Card < ActiveRecord::Base
     startdir = Dir.pwd
     Dir.chdir(dirname)
     find_front_images.each do |filename|
-      f = File.new(filename)
-      Card.create_from_frontimg(f)
-      f.close
+      c = Card.find_by_original_filename(filename)
+      Card.create_from_frontimg(filename) unless c
     end
     Dir.chdir(startdir)
   end
     
-  def self.create_from_frontimg(frontfile = DEFAULT_IMG_FOLDER)
-    c = Card.create(:frontimg => frontfile)
-    if bf = get_backimg(frontfile)
+  def self.create_from_frontimg(filename)
+    f = File.new(filename)
+    c = Card.create(:frontimg => f, :original_filename => filename)
+    if bf = get_backimg(f)
       c.backimg = bf
       bf.close
     end
     c.save
     c
+    f.close
   end
   
   def push_to_remote
