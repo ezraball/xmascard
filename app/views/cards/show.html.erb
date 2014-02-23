@@ -1,7 +1,7 @@
 <%- model_class = Card -%>
 <div class="row">
 	<div class="span6">
-	    <%= image_tag @card.frontimg.url(:full) %>
+	    <%= image_tag @card.send(@main_image_method).url(:full) %>
 	</div>
 	<div class="span6">
 		<div class="page-header">
@@ -10,11 +10,15 @@
 
 		
 		<div class="tags">
-			Year: <%=raw @card.year_list.map{|y| content_tag(:span, y, :class => :label)}.join(" ") %><br>
-			Tags: <%=raw @card.tag_list.map{|y| content_tag(:span, y, :class => :label)}.join(" ") %>
+			Year: <%= linked_tag_list(@card.year_list) %><br>
+			Tags: <%= linked_tag_list(@card.tag_list) %>
 		</div>
 		
-	    <%= link_to image_tag @card.backimg.url(:thumb) %>
+		<% if 'backimg' == @main_image_method %>
+			<%= link_to(image_tag(@card.frontimg.url(:thumb)),card_path(@card)) %>
+		<% else %>
+			<%= link_to(image_tag(@card.backimg.url(:thumb)),back_card_path(@card)) %>
+		<% end %>
 		
 		
 		<div class="form-actions">

@@ -42,3 +42,4 @@ gem "nested_form", :git =>  'git://github.com/ryanb/nested_form.git'
 
 gem 'devise'
 gem 'acts-as-taggable-on'
+gem 'will_paginate'

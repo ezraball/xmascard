@@ -7,9 +7,12 @@ class CardsController < ApplicationController
   def index
     if params[:fingerprint]
       @card = Card.where(:fingerprint => params[:fingerprint])
+    elsif params[:tag]
+      @cards = Card.tagged_with(params[:tag])
     else
-      @cards = Card.all
+      @cards = Card.where(" 1 = 1 ")
     end
+    @cards = @cards.paginate(:page => params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,9 +24,24 @@ class CardsController < ApplicationController
   # GET /cards/1.json
   def show
     @card = Card.find(params[:id])
-
+    @main_image_method = 'frontimg'
+    @tiny_image_method = 'backimg'
+    
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @card }
+    end
+  end
+
+  def back
+    @card = Card.find(params[:id])
+    @main_image_method = 'backimg'
+    @tiny_image_method = 'frontimg'
+
+    respond_to do |format|
+      format.html {
+        render template: 'cards/show'
+      }# show.html.erb
       format.json { render json: @card }
     end
   end

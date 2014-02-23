@@ -1,7 +1,13 @@
 Xmascard::Application.routes.draw do
   devise_for :users
 
-  resources :cards
+  get 'tags/:tag', to: 'cards#index', as: :tag
+
+  resources :cards do
+    member do
+      get :back
+    end
+  end
 
 
   # The priority is based upon order of creation:
