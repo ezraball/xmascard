@@ -4,21 +4,27 @@
 ### research
 * what are folks doing on etsy and ebay?
 
-
 ## Tech
 
 ### Todo
 
-* create fingerprint, a unique id based on filename and filesize that is shared between instances
-* implement login
-* push to remote feature
+#### production
+* load folder & push to remote
+
+#### code
+* tag based on original filename
 * write tests!
-* design
-* a way to remove remotecards
+
+#### design
+* make tag labels and logged in info sans serif
 
 ### Done
 * ~~re-do amazon bucket structure~~ 
-
+* create fingerprint, a unique id based on filename and filesize that is shared between instances
+* implement login
+* push to remote feature
+* a way to remove remotecards
+* have original sized photo
 
 
 ### Development log
@@ -36,3 +42,7 @@
 * added paperclip attachments
 * wrote load script from local directory
 * verified that paperclip worked ok with heroku
+
+#### 19 Feb 2014 
+* resumed project
+* have original sized photo

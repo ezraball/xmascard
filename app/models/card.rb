@@ -1,3 +1,9 @@
+class String
+  def is_year?
+    self.match(/^[12][0-9]{3}$/)
+  end
+end
+
 class Card < ActiveRecord::Base
   attr_accessible :address, :message, :name, :frontimg, :backimg, :frontimg_file_name, :frontimg_content_type, :frontimg_file_size, :frontimg_updated_at, :backimg_file_name, :backimg_content_type, :backimg_file_size, :backimg_updated_at, :original_filename, :year_list, :tag_list
   attr_reader :DEFAULT_IMAGE_FOLDER
@@ -27,7 +33,9 @@ class Card < ActiveRecord::Base
     Dir.chdir(dirname)
     find_front_images.each do |filename|
       c = Card.find_by_original_filename(filename)
-      Card.create_from_frontimg(filename) unless c
+      unless c
+        Card.create_from_frontimg(filename) 
+      end
     end
     Dir.chdir(startdir)
   end
@@ -35,6 +43,7 @@ class Card < ActiveRecord::Base
   def self.create_from_frontimg(filename)
     f = File.new(filename)
     c = Card.create(:frontimg => f, :original_filename => filename)
+    c.tag_from_original_filename
     if bf = get_backimg(f)
       c.backimg = bf
       bf.close
@@ -42,6 +51,14 @@ class Card < ActiveRecord::Base
     c.save
     c
     f.close
+  end
+  
+  def tag_from_original_filename
+    if self.original_filename
+      tags = self.original_filename.split("/")[0..-2]
+      self.year_list = (self.year_list + tags.select{|t| t.is_year?}).flatten.join(",")
+      self.tag_list = (self.tag_list + tags.reject{|t| t.is_year?}).flatten.join(",")
+    end
   end
   
   def push_to_remote
