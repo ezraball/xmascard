@@ -1,37 +1,34 @@
 <%- model_class = Card -%>
-<div class="page-header">
-  <h1><%= @card.name %></h1>
-</div>
-
-<div class="tabbable">
-	<ul class="nav nav-tabs">
-	  <li class="active"><a href= "#tab1"  data-toggle="tab">Front</a></li>
-	  <li><a href= "#tab2"  data-toggle="tab">Back</a></li>
-	  <li><a href= "#tab3"  data-toggle="tab">Message &amp; info</a></li>
-	</ul>
-	<div class="tab-content">
-	  <div class="tab-pane active" id="tab1">
+<div class="row">
+	<div class="span6">
 	    <%= image_tag @card.frontimg.url(:full) %>
-	  </div>
-	  <div class="tab-pane" id="tab2">
-	    <%= image_tag @card.backimg.url(:full) %>
-	  </div>
-	  <div class="tab-pane" id="tab3">
-	    <div class="cardmessage well">
-	    	<div class="message"><%= raw @card.message %></div>
-	    	<div class="address"><%= raw @card.address %></div>
-	    </div>
-	  </div>
 	</div>
-</div>
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              cards_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_card_path(@card), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              card_path(@card),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+	<div class="span6">
+		<div class="page-header">
+		  <h1><%= @card.name %></h1>
+		</div>
+
+		
+		<div class="tags">
+			Year: <%=raw @card.year_list.map{|y| content_tag(:span, y, :class => :label)}.join(" ") %><br>
+			Tags: <%=raw @card.tag_list.map{|y| content_tag(:span, y, :class => :label)}.join(" ") %>
+		</div>
+		
+	    <%= link_to image_tag @card.backimg.url(:thumb) %>
+		
+		
+		<div class="form-actions">
+		  <%= link_to t('.back', :default => t("helpers.links.back")),
+		              cards_path, :class => 'btn'  %>
+		  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+		              edit_card_path(@card), :class => 'btn' %>
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		              card_path(@card),
+		              :method => 'delete',
+		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		              :class => 'btn btn-danger' %>
+		</div>
+		
+		
+	</div>
 </div>

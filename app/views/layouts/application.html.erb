@@ -61,7 +61,12 @@
 	    </div>
 
 	    <% flash.each do |name, msg| %>
-	      <%= content_tag :div, msg, id: "flash_#{name}" %>
+			<div class="container pull-left">
+			    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+			      <a class="close" data-dismiss="alert">x</a>
+			      <%= msg  %>
+			    </div>
+			</div>
 	    <% end %>
 		
 		
@@ -69,23 +74,7 @@
     </div>
 
     <div class="container-fluid">
-        <%# bootstrap_flash commented out; see https://github.com/seyhunak/twitter-bootstrap-rails/issues/479 %>
-		<div class="container">
-		  <% flash.each do |name, msg| %>
-		    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-		      <a class="close" data-dismiss="alert">x</a>
-		      <%= msg  %>
-		    </div>
-		  <% end %>
-		  <!-- Rest of content -->
-		</div>
-		
-		
-		
-		
-		
-		
-		
+ 		
         <%= yield %>
 
       <footer>
