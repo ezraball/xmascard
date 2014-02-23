@@ -1,0 +1,17 @@
+<div id="navigation">
+	<div class="row-fluid">
+		<div class="span2">
+			<span class="badge badge-info"><%= @cards.count %></span>  Cards
+		</div> 
+	    <div class="span4">
+	  	  <%= will_paginate @cards %>
+	    </div>
+		<div class="span6">
+			<% if params[:tag] %>
+				<%= content_tag(:span, "Tagged to: <span class=\"label\">#{params[:tag]}</span>".html_safe, :class => 'pull-left') %> <%= link_to 'x', '/' %>
+			<% else %>
+				
+			<% end %>
+		</div>
+	</div>
+</div>

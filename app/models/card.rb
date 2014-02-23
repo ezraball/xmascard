@@ -66,6 +66,8 @@ class Card < ActiveRecord::Base
     self.attributes.each_pair do |key,value|
       rc.send("#{key}=",value)
     end
+    rc.year_list = self.year_list
+    rc.tag_list = self.tag_list
     rc.save
   end
   
