@@ -11,8 +11,11 @@
 				<%= content_tag(:span, "Tagged to: <span class=\"label\">#{params[:tag]}</span>".html_safe, :class => 'pull-left') %> <%= link_to 'x', '/' %>
 			<% else %>
 				<% sep = '' %>
-				Years: <%= linked_tag_list_with_counts(Card.year_counts) %><br>
-				Tags: <%= linked_tag_list_with_counts(Card.tag_counts.reverse) %>
+				<div>Years: <%= linked_tag_list_with_counts(Card.year_counts[0..5]) %></div>
+				<div>Tags: <%= linked_tag_list_with_counts(Card.tag_counts.reverse[0..5]) %></div>
+				
+				<div class="hidden">Years: <%= linked_tag_list_with_counts(Card.year_counts) %></div>
+				<div class="hidden">Tags: <%= linked_tag_list_with_counts(Card.tag_counts.reverse) %></div>				
 			<% end %>
 		</div>
 	</div>
