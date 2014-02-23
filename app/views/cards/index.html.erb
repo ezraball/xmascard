@@ -29,12 +29,7 @@
 		</td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_card_path(card), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      card_path(card),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      edit_card_path(card), :class => 'btn btn-large btn-primary', :style => "margin-right:15px;" %>
         </td>
       </tr>
     <% end %>
