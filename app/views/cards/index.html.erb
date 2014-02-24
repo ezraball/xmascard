@@ -1,40 +1,24 @@
-<%- model_class = Card -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1>Cards</h1>
 </div>
 
 <%= render :partial => 'pagination' %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-	  <th>Front</th>
-	  <th>Tags</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        <td>
-			<%= link_to card.name, card %>
-		</td>
-		<td>
-        	<%= link_to(image_tag(card.frontimg.url(:thumb)), card) %>
-		</td>
-		<td>
-			Years: <%= linked_tag_list(card.year_list) %><br>
-			Tags: <%= linked_tag_list(card.tag_list) %>
-		</td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_card_path(card), :class => 'btn btn-large btn-primary', :style => "margin-right:15px;" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+	<div class="span8">
+		&nbsp;
+	</div>
+	<div class="span4">
+		<%= link_to_unless('thumb' == @style, "Thumbnail view", cards_path) %> |
+		<%= link_to_if('thumb' == @style, "List view", list_cards_path) %> 
+	</div>
+</div>
+
+<div id="cards">
+	<%= render :partial => "#{@style}_view" %>
+</div>
+
+
 
 <%= render :partial => 'pagination' %>
 

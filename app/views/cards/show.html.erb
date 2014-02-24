@@ -22,15 +22,21 @@
 		
 		
 		<div class="form-actions">
-		  <%= link_to t('.back', :default => t("helpers.links.back")),
-		              cards_path, :class => 'btn'  %>
-		  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-		              edit_card_path(@card), :class => 'btn btn-large btn-primary', :style => "margin-right:15px;"  %>
-		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-		              card_path(@card),
-		              :method => 'delete',
-		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-		              :class => 'btn btn-danger btn-mini' %>
+			<div class="pull-left">
+				<%= (link_to "&larr; Previous".html_safe, @card.previous_card, :class => 'btn btn-small') if @card.previous_card %>
+				<%= (link_to "Next &rarr;".html_safe,@card.next_card, :class => 'btn btn-small') if @card.next_card %>
+				<%= link_to "Up &uarr;".html_safe,cards_path, :class => 'btn btn-small', :style => "margin:0px 30px;" %>
+			</div>
+			
+			<div class="pull-right" style="padding-left:50px;border-left:1px solid #ccc;">
+	  		  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	  		              edit_card_path(@card), :class => 'btn btn-large btn-primary', :style => "margin-right:15px;"  %>
+	  		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	  		              card_path(@card),
+	  		              :method => 'delete',
+	  		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	  		              :class => 'btn btn-danger btn-mini' %>
+			</div>
 		</div>
 		
 		

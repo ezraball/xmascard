@@ -7,6 +7,9 @@ Xmascard::Application.routes.draw do
     member do
       get :back
     end
+    collection do 
+      get :list
+    end
   end
 
 

@@ -1,0 +1,31 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cards</th>
+	  <th>Front</th>
+	  <th>Tags</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cards.each do |card| %>
+      <tr>
+        <td>
+			<%= link_to card.name, card %>
+		</td>
+		<td>
+        	<%= link_to(image_tag(card.frontimg.url(:thumb)), card) %>
+		</td>
+		<td>
+			Years: <%= linked_tag_list(card.year_list) %><br>
+			Tags: <%= linked_tag_list(card.tag_list) %>
+		</td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_card_path(card), :class => 'btn btn-large btn-primary', :style => "margin-right:15px;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

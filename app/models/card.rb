@@ -85,6 +85,15 @@ class Card < ActiveRecord::Base
   def make_fingerprint
     "#{frontimg_file_size}-#{name}"
   end
+  
+  
+  def next_card
+    Card.where("id > #{self.id}").order(:id).first
+  end
+  def previous_card
+    Card.where("id < #{self.id}").order("id desc").first
+  end
+  
 
   private
   

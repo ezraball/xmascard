@@ -5,19 +5,18 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    if params[:fingerprint]
-      @card = Card.where(:fingerprint => params[:fingerprint])
-    elsif params[:tag]
-      @cards = Card.tagged_with(params[:tag])
-    else
-      @cards = Card.where(" 1 = 1 ")
-    end
-    @cards = @cards.paginate(:page => params[:page], :per_page => 20)
-
+    @style ||= 'thumb'
+    setup_index
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @cards }
     end
+  end
+  
+  def list
+    @style = 'list'
+    setup_index
+    render action: :index
   end
 
   # GET /cards/1
@@ -104,5 +103,17 @@ class CardsController < ApplicationController
       format.html { redirect_to cards_url }
       format.json { head :no_content }
     end
+  end
+  
+  protected
+  def setup_index
+    if params[:fingerprint]
+      @card = Card.where(:fingerprint => params[:fingerprint])
+    elsif params[:tag]
+      @cards = Card.tagged_with(params[:tag])
+    else
+      @cards = Card.where(" 1 = 1 ")
+    end
+    @cards = @cards.paginate(:page => params[:page], :per_page => 20)    
   end
 end
