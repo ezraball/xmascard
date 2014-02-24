@@ -1,6 +1,6 @@
 <% @cards.each do |card| %>
 	<div class="minicard pull-left">
-		<%= link_to(image_tag(card.frontimg.url(:medium), :class => 'img-polaroid', alt: card.name, style: 'max-height:194px;'), card, title: "#{card.name} (#{card.year_list.join('')})", data: {toggle: 'tooltip', placement: 'top', content: (card.year_list + card.tag_list).flatten.compact.join(", "), trigger: 'hover'}, class: 'bob') %>
+		<%= link_to(image_tag(card.frontimg.url(:medium), :class => 'img-polaroid', alt: card.name, style: 'max-height:190px;'), card, title: "#{card.name} (#{card.year_list.join('')})", data: {toggle: 'tooltip', placement: 'top', content: (card.year_list + card.tag_list).flatten.compact.join(", "), trigger: 'hover'}, class: 'bob') %>
 	</div>
 <% end %>
 <script>
